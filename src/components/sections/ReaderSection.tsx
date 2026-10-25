@@ -6,7 +6,7 @@ import { Heart, Sparkles, BookOpen } from "lucide-react";
 
 const stanzas = [
   [
-    "Find a girl that reads and make her your wf.",
+    " a girl that reads and make her your wf.",
     "For if she reads, she's lived a thousand lives.",
     "Eloquent, intelligent, and mostly quiet,",
     "physically present, but a wandering mind.",
@@ -161,13 +161,12 @@ export function ReaderSection() {
                   {stanza.map((line, lIdx) => (
                     <p
                       key={lIdx}
-                      className={`font-serif leading-relaxed ${
-                        sIdx === 0 && lIdx === 0
-                          ? "text-xl md:text-2xl italic text-gold font-medium"
-                          : sIdx === stanzas.length - 1 && lIdx === stanza.length - 1
+                      className={`font-serif leading-relaxed ${sIdx === 0 && lIdx === 0
+                        ? "text-xl md:text-2xl italic text-gold font-medium"
+                        : sIdx === stanzas.length - 1 && lIdx === stanza.length - 1
                           ? "text-lg md:text-xl italic text-gold-soft font-medium pt-1"
                           : "text-base md:text-lg italic text-foreground/85"
-                      }`}
+                        }`}
                     >
                       {line}
                     </p>
