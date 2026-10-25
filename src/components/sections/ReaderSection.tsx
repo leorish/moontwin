@@ -6,7 +6,7 @@ import { Heart, Sparkles, BookOpen } from "lucide-react";
 
 const stanzas = [
   [
-    " a girl that reads and make her your wf.",
+    "find a girl that reads and make her your wf.",
     "For if she reads, she's lived a thousand lives.",
     "Eloquent, intelligent, and mostly quiet,",
     "physically present, but a wandering mind.",
