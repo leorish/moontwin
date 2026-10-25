@@ -238,8 +238,11 @@
   transform: translateY(-3px) scale(1.02);
 }
 
-/* Custom Interactive Cursor global override */
-.custom-cursor-active,
-.custom-cursor-active * {
-  cursor: none !important;
+/* Custom Interactive Cursor global override - only on fine pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
 }
+

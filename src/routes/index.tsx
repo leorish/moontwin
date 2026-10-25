@@ -11,14 +11,23 @@ import { Terminal } from "@/components/sections/Terminal";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
 import { CustomCursor } from "@/components/CustomCursor";
 import { AntigravityParticles } from "@/components/AntigravityParticles";
+import { NavigationHeader } from "@/components/NavigationHeader";
+import { AudioProvider } from "@/context/AudioContext";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "The Midnight Sanctuary — For Prachi" },
-      { name: "description", content: "A celestial, deeply personal web experience crafted for Prachi. Luxury Dark Academia meets Divine Mysticism." },
+      {
+        name: "description",
+        content:
+          "A celestial, deeply personal web experience crafted for Prachi. Luxury Dark Academia meets Divine Mysticism.",
+      },
       { property: "og:title", content: "The Midnight Sanctuary — For Prachi" },
-      { property: "og:description", content: "A celestial, deeply personal web experience crafted for Prachi." },
+      {
+        property: "og:description",
+        content: "A celestial, deeply personal web experience crafted for Prachi.",
+      },
     ],
   }),
   component: Index,
@@ -32,53 +41,58 @@ function Index() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.28,
-        delayChildren: 0.1,
+        staggerChildren: 0.2,
+        delayChildren: 0.05,
       },
     },
   };
 
   const blockVariants = {
-    hidden: { opacity: 0, y: 45, filter: "blur(8px)" },
+    hidden: { opacity: 0, y: 35, filter: "blur(6px)" },
     visible: {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
       transition: {
-        duration: 1.3,
+        duration: 1.1,
         ease: [0.16, 1, 0.3, 1],
       },
     },
   };
 
   return (
-    <>
+    <AudioProvider>
       <CustomCursor />
 
+      {/* Weightless celestial particle canvas in background */}
       <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden h-screen w-screen bg-background">
-        <AntigravityParticles count={35} className="opacity-80" />
+        <AntigravityParticles count={40} className="opacity-70" />
       </div>
 
       <LoadingOverlay onComplete={() => setIsLoading(false)} />
 
       <AnimatePresence>
         {!isLoading && (
-          <motion.main
-            variants={cascadeVariants}
-            initial="hidden"
-            animate="visible"
-            className="relative overflow-hidden"
-          >
-            <motion.div variants={blockVariants}><Hero /></motion.div>
-            <motion.div variants={blockVariants}><MusicSection /></motion.div>
-            <motion.div variants={blockVariants}><BookSection /></motion.div>
-            <motion.div variants={blockVariants}><ReaderSection /></motion.div>
-            <motion.div variants={blockVariants}><KrishnaSection /></motion.div>
-            <motion.div variants={blockVariants}><ItalyGallery /></motion.div>
-            <motion.div variants={blockVariants}><Terminal /></motion.div>
-          </motion.main>
+          <>
+            <NavigationHeader />
+
+            <motion.main
+              variants={cascadeVariants}
+              initial="hidden"
+              animate="visible"
+              className="relative overflow-hidden"
+            >
+              <motion.div variants={blockVariants}><Hero /></motion.div>
+              <motion.div variants={blockVariants}><MusicSection /></motion.div>
+              <motion.div variants={blockVariants}><BookSection /></motion.div>
+              <motion.div variants={blockVariants}><ReaderSection /></motion.div>
+              <motion.div variants={blockVariants}><KrishnaSection /></motion.div>
+              <motion.div variants={blockVariants}><ItalyGallery /></motion.div>
+              <motion.div variants={blockVariants}><Terminal /></motion.div>
+            </motion.main>
+          </>
         )}
       </AnimatePresence>
-    </>
+    </AudioProvider>
   );
 }

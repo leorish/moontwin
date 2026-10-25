@@ -27,6 +27,10 @@ export function LoadingOverlay({ onComplete }: LoadingOverlayProps) {
     };
   }, []);
 
+  const handleInstantEnter = () => {
+    onComplete();
+  };
+
   useEffect(() => {
     if (phase !== "typing") return;
 
@@ -49,11 +53,11 @@ export function LoadingOverlay({ onComplete }: LoadingOverlayProps) {
             // Invoke completion callback after exit transition finishes
             setTimeout(() => {
               onComplete();
-            }, 1000);
-          }, 1400);
-        }, 600);
+            }, 800);
+          }, 1000);
+        }, 500);
       }
-    }, 85); // 85ms typing cadence
+    }, 70); // 70ms typing cadence
 
     return () => clearInterval(interval);
   }, [phase, onComplete]);
@@ -109,6 +113,16 @@ export function LoadingOverlay({ onComplete }: LoadingOverlayProps) {
             >
               entering the sanctuary
             </motion.p>
+
+            <motion.button
+              onClick={handleInstantEnter}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              whileHover={{ opacity: 1, scale: 1.05 }}
+              className="mt-12 text-xs font-mono tracking-[0.3em] uppercase text-gold/60 border border-gold/20 px-4 py-1.5 rounded-full hover:border-gold/50 transition-all cursor-pointer"
+            >
+              Enter Sanctuary ✦
+            </motion.button>
           </div>
         </motion.div>
       )}
